@@ -3,14 +3,17 @@ import React from 'react'
 
 import Screen from '../components/Screen'
 import HeaderTabs from '../components/HeaderTabs'
+import SearchBar from '../components/SearchBar'
+import Categories from '../components/Categories'
 
 const Home = () => {
   return (
     <Screen>
       <View style={styles.container}>
         <HeaderTabs />     
-
+        <SearchBar />
       </View>
+      <Categories />
     </Screen>
   );
 }
