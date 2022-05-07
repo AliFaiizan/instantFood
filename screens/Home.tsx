@@ -7,7 +7,10 @@ import HeaderTabs from '../components/HeaderTabs'
 const Home = () => {
   return (
     <Screen>
+      <View style={styles.container}>
         <HeaderTabs />     
+
+      </View>
     </Screen>
   );
 }
@@ -16,7 +19,7 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
+    padding:15,
   },
 });

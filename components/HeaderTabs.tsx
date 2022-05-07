@@ -6,31 +6,46 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 export default function HeaderTabs() {
+
+  const [activeTab,setActiveTab]=useState('Delivery'); //for managing top options
   return (
     <View style={styles.container}>
-      <HeaderButton text="Delivery"  btnColor='' txtColor='' />
-      <HeaderButton text="Pickup" />
+      <HeaderButton
+        text="Delivery"
+        btnColor="#000"
+        txtColor="#fff"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
+      <HeaderButton
+        text="Pickup"
+        btnColor="#fff"
+        txtColor="#000"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
     </View>
   );
 }
 
-const HeaderButton = ({ text }: any) => {
+const HeaderButton = ({ text, btnColor='#000', txtColor="#fff",activeTab,setActiveTab }: any) => { //default value of the prop is empty
+
   let Touchable: any = TouchableOpacity;
 
   if (Platform.OS === "android") {
     Touchable = TouchableNativeFeedback;
   }
   return (
-    <View style={styles.touchable}>
+  <View style={[styles.touchable,{backgroundColor:activeTab===text?"#000":"#fff"}]}>
     <Touchable
       onPress={() => {
-        console.log("this");
+        setActiveTab(text)
       }}
-    >
-        <Text style={styles.text}>{text}</Text>
+    > 
+        <Text style={[styles.text,{color:activeTab===text?"#fff":"#000"}]}>{text}</Text>
     </Touchable>
     </View>
   );
@@ -42,17 +57,15 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     width:'100%',
     alignSelf: "center",
-    marginTop: 30,
+    marginTop: 5,
   },
   text: {
     fontSize: 15,
     fontWeight:Platform.OS==='android'?'bold':'900',
     color: "#fff",
-    backgroundColor: "#000",
   },
   touchable: {
-    backgroundColor: "#000",
-    margin:5,
+    padding:5,
     width:100,
     alignItems:'center',
     paddingVertical: 6,

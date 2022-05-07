@@ -13,7 +13,7 @@ const Screen = (props:any) => {
 const style = StyleSheet.create({
   SafeViewAndroid: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#eee",
     paddingTop:Platform.OS==='android'?StatusBar.currentHeight: 0
   },
 });
