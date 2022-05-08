@@ -7,37 +7,48 @@ const SearchBar = () => {
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
-      query={'text'}
-      placeholder='search'
-
-      styles={{
-          textInput:{
-              backgroundColor:'#eee',
-              borderRadius:20,
-              fontWeight:Platform.OS==='android'?'normal':'900',
-              marginTop:7
+        placeholder="search"
+        styles={{
+          textInput: {
+            backgroundColor: "#eee",
+            borderRadius: 20,
+            fontWeight: Platform.OS === "android" ? "normal" : "900",
+            marginTop: 7,
           },
-          textInputContainer:{
-              backgroundColor:"#eee",
-              borderRadius:50,
-              flexDirection:'row',
-              alignItems:'center',
-              marginRight:7
-          }
-      }}
-
-      renderLeftButton={() => { return <View style={styles.leftButton}>
-          <Ionicons name='location-sharp' size={24} />
-          </View> }}
-
-        renderRightButton={() => { return <View style={styles.rightButton}> 
-            <AntDesign name='clockcircle' size={11} style={{marginRight:5,alignSelf:'center'}}/>
-            <Text>Search</Text>
-        </View> }}
+          textInputContainer: {
+            backgroundColor: "#eee",
+            borderRadius: 50,
+            flexDirection: "row",
+            alignItems: "center",
+            marginRight: 7,
+          },
+        }}
+        query={{
+          key: "YOUR API KEY",
+          language: "en",
+        }}
+        renderLeftButton={() => {
+          return (
+            <View style={styles.leftButton}>
+              <Ionicons name="location-sharp" size={24} />
+            </View>
+          );
+        }}
+        renderRightButton={() => {
+          return (
+            <View style={styles.rightButton}>
+              <AntDesign
+                name="clockcircle"
+                size={11}
+                style={{ marginRight: 5, alignSelf: "center" }}
+              />
+              <Text>Search</Text>
+            </View>
+          );
+        }}
       />
-
     </View>
-  )
+  );
 }
 
 export default SearchBar
