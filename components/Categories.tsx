@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View,Image, Platform, ScrollView, TouchableOpacity,TouchableNativeFeedback } from 'react-native'
+import { StyleSheet, Text, View,Image, Platform, ScrollView} from 'react-native'
 import React from 'react'
+import Touchable from './Touchable';
 
 
 const items = [
@@ -35,11 +36,6 @@ const items = [
 
 const Categories = () => {
 
-  let Touchable: any = TouchableOpacity;
-
-  if (Platform.OS === "android") {
-    Touchable = TouchableNativeFeedback;
-  }
   return (
     <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>

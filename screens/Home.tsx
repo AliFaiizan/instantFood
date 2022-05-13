@@ -5,7 +5,9 @@ import Screen from '../components/Screen'
 import HeaderTabs from '../components/HeaderTabs'
 import SearchBar from '../components/SearchBar'
 import Categories from '../components/Categories'
-import ResturantItem from '../components/ResturantItem'
+import ResturantList from '../components/ResturantList'
+
+
 
 const Home = () => {
   return (
@@ -17,7 +19,7 @@ const Home = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
 
       <Categories />
-      <ResturantItem/>
+      <ResturantList/>
       </ScrollView>
     </Screen>
   );

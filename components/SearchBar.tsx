@@ -1,7 +1,8 @@
-import { Platform, StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { Ionicons , AntDesign} from '@expo/vector-icons'
+import Touchable from './Touchable'
 
 const SearchBar = () => {
   return (
@@ -36,14 +37,20 @@ const SearchBar = () => {
         }}
         renderRightButton={() => {
           return (
-            <View style={styles.rightButton}>
-              <AntDesign
-                name="clockcircle"
-                size={11}
-                style={{ marginRight: 5, alignSelf: "center" }}
-              />
-              <Text>Search</Text>
-            </View>
+            <Touchable
+              onPress={() => {
+                console.log("tha");
+              }}
+            >
+              <View style={styles.rightButton}>
+                <AntDesign
+                  name="clockcircle"
+                  size={11}
+                  style={{ marginRight: 5, alignSelf: "center" }}
+                />
+                <Text>Search</Text>
+              </View>
+            </Touchable>
           );
         }}
       />
@@ -58,15 +65,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: "row",
   },
-  leftButton:{
-    marginLeft:10
+  leftButton: {
+    marginLeft: 10,
   },
-  rightButton:{
-    flexDirection:'row',
-    marginRight:10,
-    backgroundColor:'white',
-    padding:10,
-    borderRadius:50,
-}
-  
+  rightButton: {
+    flexDirection: "row",
+    height: 40,
+    width: 90,
+    overflow: "hidden",
+    marginRight: 10,
+    backgroundColor: "white",
+    elevation: 10,
+    padding: 10,
+    borderRadius: 50,
+  },
 });
