@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React ,{useEffect, useState} from 'react'
 
 import Screen from '../components/Screen'
 import HeaderTabs from '../components/HeaderTabs'
@@ -8,18 +8,23 @@ import Categories from '../components/Categories'
 import ResturantList from '../components/ResturantList'
 
 
-
 const Home = () => {
+
+  const [lState, setLState] = useState("SanFransisco");
+  
+
   return (
     <Screen>
       <View style={styles.container}>
         <HeaderTabs />
-        <SearchBar />
+        <SearchBar location={setLState} />
       </View>
       <Categories />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <ResturantList />
-      </ScrollView>
+      <View style={{flex:1}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {lState&&<ResturantList location={lState} />}
+        </ScrollView>
+      </View>
     </Screen>
   );
 }

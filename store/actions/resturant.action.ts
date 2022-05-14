@@ -1,18 +1,17 @@
 
 import {YELP_API} from '../../keys'
 export const GET_RESTURANTS='GET_RESTURANTS';
+export const SET_LOCATION='SET_LOCATION';
 
 
-export const getResturants:any=() => { 
+export const getResturants:any=(location:any) => { 
  return async(dispatch:any,state:any)=>{
-   const url = `https://api.yelp.com/v3/businesses/search?term=resturants&location=SanDiego`;
+   const url = `https://api.yelp.com/v3/businesses/search?term=resturants&location=${location}`;
    const options={
      headers:{
        Authorization: `Bearer ${YELP_API}`
       },
    }
-
-   let businesses;
 
    try{
      const response:any = await fetch(url,options);
@@ -34,3 +33,8 @@ export const getResturants:any=() => {
 
  }
 }
+export const setLocation: any = (locationState:any) => {
+  return async (dispatch: any, state: any) => {
+   dispatch({type:SET_LOCATION,location:locationState})
+  };
+};

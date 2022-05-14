@@ -41,24 +41,27 @@ const ResturantItem = ({ uri, name, rating }: any) => {
   );
 };
 
-const ResturantList = () => {
+const ResturantList = ({location}:any) => {
   const dispatch=useDispatch();
 
-  const [isLoading,setIsLoading]=useState(false)
+  const [isLoading,setIsLoading]=useState(false);
+   //this is used because if the parent location changes thought search bar it also updates and re Render
   const resturants = useSelector((state: any) => {
     return state.resturants.resturants;
   });
   
   const getresturant = async () => {
-    await dispatch(ResturantAction.getResturants());
+    await dispatch(ResturantAction.getResturants(location));
     setIsLoading(false);
   };
+  
+  
 
   useEffect(() => {
     setIsLoading(true)
 
     getresturant() 
-  }, [dispatch])
+  }, [dispatch,location])
   
 
 
