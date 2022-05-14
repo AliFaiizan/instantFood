@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, Image,TouchableNativeFeedback,Platform, TouchableOpacity } from 'react-native'
-import React from 'react'
+import {ActivityIndicator, StyleSheet, Text, View, Image,TouchableNativeFeedback,Platform, TouchableOpacity, ScrollView } from 'react-native'
+import React ,{useEffect, useState} from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Touchable from './Touchable'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import * as ResturantAction from '../store/actions/resturant.action'
 
 
 const ResturantItem = ({ uri, name, rating }: any) => {
@@ -41,18 +42,59 @@ const ResturantItem = ({ uri, name, rating }: any) => {
 };
 
 const ResturantList = () => {
+  const dispatch=useDispatch();
 
-  const resturants=useSelector((state:any) => { return state.resturants.resturants })
+  const [isLoading,setIsLoading]=useState(false)
+  const resturants = useSelector((state: any) => {
+    return state.resturants.resturants;
+  });
+  
+  const getresturant = async () => {
+    await dispatch(ResturantAction.getResturants());
+    setIsLoading(false);
+  };
 
-  if(resturants.length>0){
-     return (
-      resturants.map((item:any,index:any) => { 
-        return <ResturantItem name={item.name} uri={item.uri} rating={item.rating} />
-       })
-    )
+  useEffect(() => {
+    setIsLoading(true)
+
+    getresturant() 
+  }, [dispatch])
+  
+
+
+  if(isLoading){
+     return <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="black" />
+      </View>
   }
 
-  return <Text>There are no items</Text>
+  if (!isLoading && resturants.length===0) {
+    return (
+    <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+      <Text>There are no resturants to show please try again later</Text>
+    </View>
+     
+    );
+  }
+ 
+
+     return (
+       <ScrollView>
+        {resturants.map((item:any,index:any) => { 
+        return (
+          <ResturantItem
+            key={index}
+            name={item.name}
+            uri={item.image_url}
+            rating={item.rating}
+          />
+        );
+       })}
+       </ScrollView>
+     
+    )
+  
+
  
 }
 

@@ -13,13 +13,12 @@ const Home = () => {
   return (
     <Screen>
       <View style={styles.container}>
-        <HeaderTabs />     
+        <HeaderTabs />
         <SearchBar />
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-
       <Categories />
-      <ResturantList/>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <ResturantList />
       </ScrollView>
     </Screen>
   );
