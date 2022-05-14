@@ -41,7 +41,7 @@ const ResturantItem = ({ uri, name, rating }: any) => {
   );
 };
 
-const ResturantList = ({location}:any) => {
+const ResturantList = ({location,activeTab}:any) => {
   const dispatch=useDispatch();
 
   const [isLoading,setIsLoading]=useState(false);
@@ -51,7 +51,12 @@ const ResturantList = ({location}:any) => {
   });
   
   const getresturant = async () => {
-    await dispatch(ResturantAction.getResturants(location));
+    console.log(location, activeTab);
+    const options={
+      location,
+      activeTab
+    }
+    await dispatch(ResturantAction.getResturants(options));
     setIsLoading(false);
   };
   
@@ -61,7 +66,7 @@ const ResturantList = ({location}:any) => {
     setIsLoading(true)
 
     getresturant() 
-  }, [dispatch,location])
+  }, [dispatch,location,activeTab])
   
 
 

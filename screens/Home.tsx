@@ -10,19 +10,21 @@ import ResturantList from '../components/ResturantList'
 
 const Home = () => {
 
-  const [lState, setLState] = useState("SanFransisco");
+  const [lState, setLState] = useState("SanFransisco");// by default it will load the this location data. state can be changed from searchbar
+
+  const [activeTab,setActiveTab]=useState('Delivery');
   
 
   return (
     <Screen>
       <View style={styles.container}>
-        <HeaderTabs />
+        <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBar location={setLState} />
       </View>
       <Categories />
-      <View style={{flex:1}}>
+      <View style={{ flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {lState&&<ResturantList location={lState} />}
+          <ResturantList location={lState} activeTab={activeTab.toLowerCase()} />
         </ScrollView>
       </View>
     </Screen>

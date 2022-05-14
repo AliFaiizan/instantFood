@@ -7,10 +7,11 @@ import {
   Platform,
 } from "react-native";
 import React, { useState } from "react";
+import Touchable from "./Touchable";
 
-export default function HeaderTabs() {
+export default function HeaderTabs({activeTab,setActiveTab}:any) {
 
-  const [activeTab,setActiveTab]=useState('Delivery'); //for managing top options
+   //for managing top options
   return (
     <View style={styles.container}>
       <HeaderButton
@@ -31,13 +32,8 @@ export default function HeaderTabs() {
   );
 }
 
-const HeaderButton = ({ text, btnColor='#000', txtColor="#fff",activeTab,setActiveTab }: any) => { //default value of the prop is empty
+const HeaderButton = ({ text,activeTab,setActiveTab }: any) => { //default value of the prop is empty
 
-  let Touchable: any = TouchableOpacity;
-
-  if (Platform.OS === "android") {
-    Touchable = TouchableNativeFeedback;
-  }
   return (
   <View style={[styles.touchable,{backgroundColor:activeTab===text?"#000":"#fff"}]}>
     <Touchable

@@ -4,7 +4,7 @@ export const GET_RESTURANTS='GET_RESTURANTS';
 export const SET_LOCATION='SET_LOCATION';
 
 
-export const getResturants:any=(location:any) => { 
+export const getResturants:any=({location,activeTab}:any) => { 
  return async(dispatch:any,state:any)=>{
    const url = `https://api.yelp.com/v3/businesses/search?term=resturants&location=${location}`;
    const options={
@@ -12,7 +12,7 @@ export const getResturants:any=(location:any) => {
        Authorization: `Bearer ${YELP_API}`
       },
    }
-
+   
    try{
      const response:any = await fetch(url,options);
      
@@ -21,16 +21,15 @@ export const getResturants:any=(location:any) => {
      if (!response.ok) {
        throw new Error("Something went wrong");
      }
-     
+     const businesses= resData.businesses.filter((bus:any) => { 
+       return bus.transactions.includes(activeTab) 
+      })
       //businesses =  response.body.businesses;
-      dispatch({ type: GET_RESTURANTS, resturants: resData.businesses });
+      dispatch({ type: GET_RESTURANTS, resturants: businesses });
    }catch(err){
     console.log(err)
    }
    
-        
-    
-
  }
 }
 export const setLocation: any = (locationState:any) => {
