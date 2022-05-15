@@ -2,12 +2,10 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableNativeFeedback,
-  TouchableOpacity,
   Platform,
 } from "react-native";
-import React, { useState } from "react";
-import Touchable from "./Touchable";
+import React from "react";
+import Touchable from "../Touchable";
 
 export default function HeaderTabs({activeTab,setActiveTab}:any) {
 

@@ -1,7 +1,7 @@
 import { Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { FontAwesome5 } from '@expo/vector-icons';
-import Touchable from './Touchable';
+import Touchable from '../Touchable';
 
 const BottomTab = () => {
   return (

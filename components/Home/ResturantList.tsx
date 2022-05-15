@@ -1,9 +1,9 @@
 import {ActivityIndicator, StyleSheet, Text, View, Image,TouchableNativeFeedback,Platform, TouchableOpacity, ScrollView } from 'react-native'
 import React ,{useEffect, useState} from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import Touchable from './Touchable'
+import Touchable from '../Touchable'
 import { useDispatch, useSelector } from 'react-redux'
-import * as ResturantAction from '../store/actions/resturant.action'
+import * as ResturantAction from '../../store/actions/resturant.action'
 
 
 const ResturantItem = ({ uri, name, rating }: any) => {

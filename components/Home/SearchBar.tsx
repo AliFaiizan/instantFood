@@ -2,10 +2,10 @@ import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from '
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { Ionicons , AntDesign} from '@expo/vector-icons'
-import Touchable from './Touchable'
-import { GOOGLE_PLACES } from '../keys'
+import Touchable from '../Touchable'
+import { GOOGLE_PLACES } from '../../keys'
 import { useDispatch } from 'react-redux'
-import * as ResturantAction from "../store/actions/resturant.action";
+import * as ResturantAction from "../../store/actions/resturant.action";
 
 const SearchBar = ({location}:any) => {
 

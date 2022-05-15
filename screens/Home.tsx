@@ -3,11 +3,11 @@ import { ScrollView, StyleSheet, Text, View} from 'react-native'
 import React ,{useEffect, useState} from 'react'
 import { Divider } from 'react-native-elements'
 import Screen from '../components/Screen'
-import HeaderTabs from '../components/HeaderTabs'
-import SearchBar from '../components/SearchBar'
-import Categories from '../components/Categories'
-import ResturantList from '../components/ResturantList'
-import BottomTab from '../components/BottomTab'
+import HeaderTabs from '../components/Home/HeaderTabs'
+import SearchBar from '../components/Home/SearchBar'
+import Categories from '../components/Home/Categories'
+import ResturantList from '../components/Home/ResturantList'
+import BottomTab from '../components/Home/BottomTab'
 
 
 const Home = () => {
