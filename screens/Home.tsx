@@ -10,7 +10,7 @@ import ResturantList from '../components/Home/ResturantList'
 import BottomTab from '../components/Home/BottomTab'
 
 
-const Home = () => {
+const Home:any = ({navigation}:any) => {
 
   const [lState, setLState] = useState("SanFransisco");// by default it will load the this location data. state can be changed from searchbar
 
@@ -26,7 +26,7 @@ const Home = () => {
       <Categories />
       <View style={{ flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <ResturantList location={lState} activeTab={activeTab.toLowerCase()} />
+          <ResturantList navigation={navigation} location={lState} activeTab={activeTab.toLowerCase()} />
         </ScrollView>
         <Divider width={1} />
         <BottomTab />

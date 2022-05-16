@@ -1,17 +1,17 @@
 import { StyleSheet, Text, View,Image,Platform } from 'react-native'
 import React from 'react'
 
-const About = () => {
+const About = ({description,image_url,name}:any) => {
   return (
     <View>
       <Image
         style={styles.image}
         source={{
-          uri: "https://s3-media1.fl.yelpcdn.com/bphoto/H9W5Tg14pPXXVMVNmmdIpA/o.jpg",
+          uri: image_url,
         }}
       />
-      <Text style={styles.text}>Cocina 35</Text>
-      <Text style={styles.description}>Cocina 35</Text>
+      <Text style={styles.text}>{name}</Text>
+      <Text style={styles.description}>{description}</Text>
     </View>
   );
 }
@@ -35,3 +35,4 @@ const styles = StyleSheet.create({
     fontWeight: Platform.OS === "android" ? "normal" : "400",
   },
 });
+

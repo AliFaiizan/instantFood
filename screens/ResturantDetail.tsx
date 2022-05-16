@@ -6,10 +6,18 @@ import { Divider } from 'react-native-elements';
 
 
 
-const ResturantDetail = () => {
+const ResturantDetail = ({route}:any) => {
+
+    const ResturantDetail=route.params;
+
+  const {name,image_url,price,review_count,rating,categories}=ResturantDetail;
+
+  const formatedCategories=categories.map((cat:any)=>cat.title).join('.');
+  const description= `${formatedCategories} ${price?' '+price:' . '} . 💳 . ${rating} ⭐ (${review_count}+)` 
+
   return (
     <View>
-      <About />
+      <About description={description} name={name} image_url={image_url} about={route}/>
       <Divider width={1.8} style={{ marginVertical: 20 }} />
       <ScrollView >
         <MenuItems

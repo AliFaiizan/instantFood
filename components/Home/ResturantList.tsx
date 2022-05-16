@@ -6,14 +6,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as ResturantAction from '../../store/actions/resturant.action'
 
 
-const ResturantItem = ({ uri, name, rating }: any) => {
+const ResturantItem = ({ item, navigation }: any) => {
   return (
-    <Touchable>
+    <Touchable onPress={() => { 
+      navigation.navigate('Details',item)
+     }}>
       <View style={styles.container}>
         <View style={{ borderRadius: 10, overflow: "hidden" }}>
           <Image
             source={{
-              uri: uri,
+              uri: item.image_url,
             }}
             style={styles.image}
           />
@@ -29,11 +31,11 @@ const ResturantItem = ({ uri, name, rating }: any) => {
 
         <View style={styles.info}>
           <View>
-            <Text style={styles.title}>{name}</Text>
+            <Text style={styles.title}>{item.name}</Text>
             <Text style={styles.time}> 30-40 min </Text>
           </View>
           <View style={styles.rating}>
-            <Text>{rating}</Text>
+            <Text>{item.rating}</Text>
           </View>
         </View>
       </View>
@@ -41,7 +43,7 @@ const ResturantItem = ({ uri, name, rating }: any) => {
   );
 };
 
-const ResturantList = ({location,activeTab}:any) => {
+const ResturantList = ({location,activeTab,navigation}:any) => {
   const dispatch=useDispatch();
 
   const [isLoading,setIsLoading]=useState(false);
@@ -92,9 +94,8 @@ const ResturantList = ({location,activeTab}:any) => {
         return (
           <ResturantItem
             key={index}
-            name={item.name}
-            uri={item.image_url}
-            rating={item.rating}
+            item={item}
+            navigation={navigation}
           />
         );
        })}
