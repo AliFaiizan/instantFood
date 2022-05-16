@@ -1,13 +1,22 @@
-import { Platform, StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View , Image } from 'react-native'
 import React from 'react'
+import Touchable from '../Touchable';
 
 const MenuItems = ({food}:any) => {
   return (
-    <View style={styles.menuitem}>
-      <Text style={styles.title}>{food.title}</Text>
-      <Text>{food.description}</Text>
-      <Text>{food.price}</Text>
-    </View>
+      <Touchable>
+        <View style={styles.menuitem}>
+            <View style={styles.container}>
+                <Text style={styles.title}>{food.title}</Text>
+                <Text>{food.description}</Text>
+                <Text>${food.price}</Text>
+            </View>
+            <View>
+                <Image style={styles.image} source={{uri:food.image}} />
+            </View>
+        </View>
+
+      </Touchable>
   );
 }
 
@@ -22,11 +31,17 @@ const styles = StyleSheet.create({
     menuitem:{
         flexDirection:'row',
         justifyContent:'space-between',
-        margin:20,
+        padding:20,
+        elevation:5,
     },
     title:{
         fontSize:19,
         fontWeight:Platform.OS==='android'?'bold':'900',
+    },
+    image:{
+        width:100,
+        height:100,
+        borderRadius:8
     }
 
 })
