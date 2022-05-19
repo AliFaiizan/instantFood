@@ -2,25 +2,39 @@ import { Platform, StyleSheet, Text, View , Image } from 'react-native'
 import React from 'react'
 import Touchable from '../Touchable';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import * as CartAction from '../../store/actions/cart.action';
+import { useDispatch} from 'react-redux';
 
-const MenuItems = ({food}:any) => {
+const MenuItems = ({food,isInCart}:any) => {
+
+    const dispatch= useDispatch();
+
+
   return (
-      <Touchable>
-        <View style={styles.container}>
-            <BouncyCheckbox
-                
-            />
-            <View style={styles.menuitem}>
-                <Text style={styles.title}>{food.title}</Text>
-                <Text>{food.description}</Text>
-                <Text>${food.price}</Text>
-            </View>
-            <View>
-                <Image style={styles.image} source={{uri:food.image}} />
-            </View>
+    <Touchable>
+      <View style={styles.container}>
+        <BouncyCheckbox
+          iconStyle={{ borderColor: "lightgray", borderRadius: 1 }}
+          fillColor="green"
+          onPress={(checkboxValue) => {
+            if (checkboxValue === true) {
+              dispatch(CartAction.addToCart(food, checkboxValue));
+            } else {
+              dispatch(CartAction.deleteFromCart(food, checkboxValue));
+            }
+          }}
+          isChecked={isInCart}
+        />
+        <View style={styles.menuitem}>
+          <Text style={styles.title}>{food.title}</Text>
+          <Text>{food.description}</Text>
+          <Text>${food.price}</Text>
         </View>
-
-      </Touchable>
+        <View>
+          <Image style={styles.image} source={{ uri: food.image }} />
+        </View>
+      </View>
+    </Touchable>
   );
 }
 

@@ -4,8 +4,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { Ionicons , AntDesign} from '@expo/vector-icons'
 import Touchable from '../Touchable'
 import { GOOGLE_PLACES } from '../../keys'
-import { useDispatch } from 'react-redux'
-import * as ResturantAction from "../../store/actions/resturant.action";
+
 
 const SearchBar = ({location}:any) => {
 
