@@ -6,7 +6,9 @@ import { Divider } from 'react-native-elements';
 import ViewCart from '../components/About/ViewCart';
 import { useSelector } from 'react-redux';
 import Touchable from '../components/Touchable';
-import OrderItem from '../components/About/orderItem';
+import OrderItem from '../components/About/OrderItem';
+import app from '../firebase';
+import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from "firebase/firestore/lite";
 
 
 const menuData = [
@@ -56,6 +58,28 @@ const ResturantDetail = ({route}:any) => {
 
   let total=items.map((item:any) => { return item.price }).reduce((acc:any,curr:any) => acc+curr,0 )
 
+  const addOrderToFireBase= async () => { 
+
+    try{
+       const db = getFirestore(app);
+
+       const orders = collection(db, "orders");
+
+        await addDoc(orders, {
+         items,
+         name,
+         createdAt:serverTimestamp()
+       });
+       
+    }catch(err){
+      console.log(err)
+    }
+   
+
+    setModalVisibal(false);
+    
+   }
+
   const viewCart=() => { 
     setModalVisibal(true)
    }
@@ -71,11 +95,14 @@ const ResturantDetail = ({route}:any) => {
 
            <View style={style.subTotal}>
              <Text style={style.subTotalText}>SUBTOTAL</Text>
-             <Text style={style.subTotalText}>{total}</Text>
+             <Text style={style.subTotalText}>${total}</Text>
            </View>
            <View style={{ flex: 1, alignItems: "center" }}>
              <Touchable
-               onPress={() => setModalVisibal(false)}
+               onPress={() =>{
+                addOrderToFireBase()
+                
+               }}
              >
                <View
                  style={{
