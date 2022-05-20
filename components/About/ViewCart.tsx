@@ -2,18 +2,19 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Touchable from '../Touchable'
 
-const ViewCart = ({total}:any) => {
+const ViewCart = ({total,onpress}:any) => {
+  
   return (
-      <View style={styles.container}>
-        <Touchable >
-          <View style={styles.inner}>
-            <Text style={styles.text}>ViewCart</Text>
-            <Text style={styles.text}>${total}</Text>
-          
+        <Touchable onPress={onpress} >
+          <View style={styles.container}>
+              <View style={styles.inner}>
+                <Text style={styles.text}>ViewCart</Text>
+                <Text style={styles.text}>${total}</Text>
+              
+              </View>
+            
           </View>
-         
         </Touchable>
-      </View>
   );
 }
 
